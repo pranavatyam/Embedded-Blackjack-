@@ -23,5 +23,4 @@ uint16_t read_adc() {
 void joystick() {
     printf("ADC Result: %d     \r", read_adc());
     fflush(stdout);
-    sleep_ms(250);
 }
