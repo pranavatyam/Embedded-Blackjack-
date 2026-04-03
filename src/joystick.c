@@ -6,27 +6,22 @@
 #include "hardware/adc.h"
 
 void init_adc();
-int joystick();
+void joystick();
 uint16_t read_adc();
 
 void init_adc() {
     gpio_init(45);
-    gpio_init(40);
     adc_init();
     adc_gpio_init(45);
-    adc_gpio_init(40);
     adc_select_input(5);
-    adc_select_input(0);
+    adc_set_round_robin(33u);
 }
 
 uint16_t read_adc() {
     return(adc_read());
 }
 
-int joystick() {
-    uint16_t adc_out = read_adc();
-    return adc_out;
+void joystick() {
     printf("ADC Result: %d     \r", read_adc());
     fflush(stdout);
-    
 }
