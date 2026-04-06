@@ -10,11 +10,11 @@ int main() {
 
     init_adc();
 
-    int input = 0; 
-    // 1:right, 2:left, 3:up, 4:down
+    char input = 0; 
+    // R:right, L:left, U:up, D:down
     for(;;) {
         input = joystick();
-        //printf("User inputted %d\n", input);
+        printf("User selected: %c\n", input);
         sleep_ms(250);
     }
 }
