@@ -22,7 +22,7 @@ void ILI9341::hardwareReset() {
     gpio_put(rst, 1);
     sleep_ms(150);
 }
-const uint8_t digits5x7[17][5] = {
+const uint8_t digits5x7[10][5] = {
     {0x3E, 0x51, 0x49, 0x45, 0x3E}, // 0
     {0x00, 0x42, 0x7F, 0x40, 0x00}, // 1
     {0x42, 0x61, 0x51, 0x49, 0x46}, // 2
@@ -33,13 +33,6 @@ const uint8_t digits5x7[17][5] = {
     {0x01, 0x71, 0x09, 0x05, 0x03}, // 7
     {0x36, 0x49, 0x49, 0x49, 0x36}, // 8
     {0x06, 0x49, 0x49, 0x29, 0x1E}, // 9
-    {0x3A, 0x7F, 0x2A, 0x7F, 0x2E}, // $
-    {0x00, 0x00, 0x7D, 0x00, 0x00}, // !
-    {0x00, 0x00, 0x4D, 0x48, 0x78}, // ?
-    {0x00, 0x00, 0x14, 0x00, 0x00}, // :
-    {0x00, 0x00, 0x41, 0x41, 0x7F}, // )
-    {0x7F, 0x41, 0x41, 0x00, 0x00},  // (
-    {0x14, 0x3E, 0x14, 0x3E, 0x14}
 };
 const uint8_t letters5x7[26][5] = {
     {0x7E, 0x11, 0x11, 0x11, 0x7E}, // A
@@ -68,6 +61,16 @@ const uint8_t letters5x7[26][5] = {
     {0x63, 0x14, 0x08, 0x14, 0x63}, // X
     {0x07, 0x08, 0x70, 0x08, 0x07}, // Y
     {0x61, 0x51, 0x49, 0x45, 0x43}  // Z
+};
+static const uint8_t symbols5x7[8][5] = {
+    {0x08, 0x08, 0x3E, 0x08, 0x08}, // +
+    {0x00, 0x1C, 0x22, 0x41, 0x00}, // (
+    {0x00, 0x41, 0x22, 0x1C, 0x00}, // )
+    {0x00, 0x00, 0x5F, 0x00, 0x00}, // !
+    {0x24, 0x2A, 0x7F, 0x2A, 0x12}, // $
+    {0x00, 0x36, 0x36, 0x00, 0x00}, // :
+    {0x02, 0x01, 0x51, 0x09, 0x06}, // ?
+    {0x00, 0x10, 0x10, 0x10, 0x00}  // -
 };
 
 void ILI9341::writeCommand(uint8_t cmd) {
@@ -283,10 +286,19 @@ void ILI9341::drawChar(uint16_t x, uint16_t y, char c, uint16_t color, uint8_t s
         bitmap = digits5x7[c - '0'];
     } else if (c >= 'A' && c <= 'Z') {
         bitmap = letters5x7[c - 'A'];
-    } else if (c == ' ') {
-        return;
     } else {
-        return;
+        switch (c) {
+            case '+': bitmap = symbols5x7[0]; break;
+            case '(': bitmap = symbols5x7[1]; break;
+            case ')': bitmap = symbols5x7[2]; break;
+            case '!': bitmap = symbols5x7[3]; break;
+            case '$': bitmap = symbols5x7[4]; break;
+            case ':': bitmap = symbols5x7[5]; break;
+            case '?': bitmap = symbols5x7[6]; break;
+            case '-': bitmap = symbols5x7[7]; break;
+            case ' ': return;
+            default:  return;
+        }
     }
 
     for (uint8_t col = 0; col < 5; col++) {
@@ -308,7 +320,7 @@ void ILI9341::drawText(uint16_t x, uint16_t y, const char* str, uint16_t color, 
         } else {
             drawChar(x, y, *str, color, scale);
         }
-        x += 6; // 5 pixels + 1 space
+        x += 6 * scale; // 5 pixels + 1 space
         str++;
     }
 }
@@ -374,3 +386,4 @@ void ILI9341::fillCircle(int x0, int y0, int r, uint16_t color) {
         }
     }
 }
+
