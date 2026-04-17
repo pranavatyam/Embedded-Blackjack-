@@ -8,10 +8,10 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "/Users/pranavatyam/Documents/Purdue/Embedded-Blackjack-/include",
-                "/Users/pranavatyam/Documents/Purdue/Embedded-Blackjack-/src",
+                "/Users/pranavatyam/Documents/Purdue/Spring2026/ECE362/Project/Embedded-Blackjack-/include",
+                "/Users/pranavatyam/Documents/Purdue/Spring2026/ECE362/Project/Embedded-Blackjack-/src",
                 "/Users/pranavatyam/.platformio/packages/framework-picosdk/generated",
-                "/Users/pranavatyam/Documents/Purdue/Embedded-Blackjack-/.pio/build/proton/generated",
+                "/Users/pranavatyam/Documents/Purdue/Spring2026/ECE362/Project/Embedded-Blackjack-/.pio/build/proton/generated",
                 "/Users/pranavatyam/.platformio/packages/framework-picosdk/src/boards/include",
                 "/Users/pranavatyam/.platformio/packages/framework-picosdk/src/common/boot_picobin_headers/include",
                 "/Users/pranavatyam/.platformio/packages/framework-picosdk/src/common/boot_picoboot_headers/include",
@@ -178,10 +178,10 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "/Users/pranavatyam/Documents/Purdue/Embedded-Blackjack-/include",
-                    "/Users/pranavatyam/Documents/Purdue/Embedded-Blackjack-/src",
+                    "/Users/pranavatyam/Documents/Purdue/Spring2026/ECE362/Project/Embedded-Blackjack-/include",
+                    "/Users/pranavatyam/Documents/Purdue/Spring2026/ECE362/Project/Embedded-Blackjack-/src",
                     "/Users/pranavatyam/.platformio/packages/framework-picosdk/generated",
-                    "/Users/pranavatyam/Documents/Purdue/Embedded-Blackjack-/.pio/build/proton/generated",
+                    "/Users/pranavatyam/Documents/Purdue/Spring2026/ECE362/Project/Embedded-Blackjack-/.pio/build/proton/generated",
                     "/Users/pranavatyam/.platformio/packages/framework-picosdk/src/boards/include",
                     "/Users/pranavatyam/.platformio/packages/framework-picosdk/src/common/boot_picobin_headers/include",
                     "/Users/pranavatyam/.platformio/packages/framework-picosdk/src/common/boot_picoboot_headers/include",
