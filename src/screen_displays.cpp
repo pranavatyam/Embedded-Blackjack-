@@ -30,22 +30,22 @@ int game_screen(const std::vector<std::string>& dealerHand,
                 bool splitActive,
                 bool leftHandActive);
 
-void demo_all_screens();
-int main() {
-    stdio_init_all();
-    sleep_ms(1500);
+// void demo_all_screens();
+// int main() {
+//     stdio_init_all();
+//     sleep_ms(1500);
 
-    tft.init();
-    tft.setRotation(3);
+//     tft.init();
+//     tft.setRotation(3);
 
-    demo_all_screens();
+//     demo_all_screens();
 
-    while (true) {
-        sleep_ms(1000);
-    }
+//     while (true) {
+//         sleep_ms(1000);
+//     }
 
-    return 0;
-};
+//     return 0;
+// };
 
 static void clearOptionsArea() {
     tft.fillRect(0, 96, 225, 24, ILI9341::BLACK);
@@ -106,43 +106,43 @@ static void drawSplitBanner(bool leftHandActive) {
     }
 }
 
-void demo_all_screens() {
-    while (true) {
-        // 1. Normal screen
-        game_screen({"A", "?"}, {"10", "8"},{},{},250,
-        true, true, false, false, true);
-        tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
-        tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
-        sleep_ms(3000);
+// void demo_all_screens() {
+//     while (true) {
+//         // 1. Normal screen
+//         game_screen({"A", "?"}, {"10", "8"},{},{},250,
+//         true, true, false, false, true);
+//         tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
+//         tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
+//         sleep_ms(3000);
 
-        // 2. Double down screen
-        game_screen({"9", "?"}, {"6", "5", "K"},{},{},200,
-        false, false, true, false, true);
-        tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
-        tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
-        sleep_ms(3000);
+//         // 2. Double down screen
+//         game_screen({"9", "?"}, {"6", "5", "K"},{},{},200,
+//         false, false, true, false, true);
+//         tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
+//         tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
+//         sleep_ms(3000);
 
-        // 3. Split screen, hand 1 active
-        game_screen({"K", "?"},{},{"8", "3"},{"8", "Q"},180,
-        false, false, false, true, true);
-        tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
-        tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
-        sleep_ms(3000);
+//         // 3. Split screen, hand 1 active
+//         game_screen({"K", "?"},{},{"8", "3"},{"8", "Q"},180,
+//         false, false, false, true, true);
+//         tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
+//         tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
+//         sleep_ms(3000);
 
-        // 4. Split screen, hand 2 active
-        game_screen({"K", "?"}, {},{"8", "3"},{"8", "Q"},180,
-        false, false, false, true, false);
-        tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
-        tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
-        sleep_ms(3000);
+//         // 4. Split screen, hand 2 active
+//         game_screen({"K", "?"}, {},{"8", "3"},{"8", "Q"},180,
+//         false, false, false, true, false);
+//         tft.drawText(5, 210, "DEALER", ILI9341::WHITE, 1);
+//         tft.drawText(5, 80, "PLAYER", ILI9341::WHITE, 1);
+//         sleep_ms(3000);
 
-        // 5. Winning screen
-        winning(50);
+//         // 5. Winning screen
+//         winning(50);
 
-        // 6. Losing screen
-        losing(25);
-    }
-}
+//         // 6. Losing screen
+//         losing(25);
+//     }
+// }
 
 int winning(int money) {
     std::string win = std::to_string(money);
