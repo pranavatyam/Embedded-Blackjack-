@@ -3,6 +3,35 @@
 
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
+#include <string>
+#include <vector>
+
+int startscreen(int selectedIndex);
+int bet_screen(int currentMoney, int currentBet);
+int push_screen(void);
+int winning(int money);
+int losing(int money);
+int game_screen(const std::vector<std::string>& dealerHand,
+                const std::vector<std::string>& playerHand,
+                const std::vector<std::string>& splitHand1,
+                const std::vector<std::string>& splitHand2,
+                int money,
+                bool canSplit,
+                bool canDoubleDown,
+                bool doubleDownActive,
+                bool splitActive,
+                bool leftHandActive,
+                int selectedIndex);
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void Screen_Init(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 class ILI9341 {
 public:
@@ -54,3 +83,4 @@ private:
 };
 
 #endif
+

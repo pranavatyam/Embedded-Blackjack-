@@ -3,18 +3,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pico/stdlib.h"
+#include "test_loop.h"
+#include "game_logic.h"
 
 
-int main() {
+int main(void) {
     stdio_init_all();
+    sleep_ms(1500);
 
-    init_adc();
+    Screen_Init();   // initialize TFT first
+    BJ_Init();       // safe to show start screen now
 
-    char input = 0; 
-    // R:right, L:left, U:up, D:down
-    for(;;) {
-        input = joystick();
-        printf("User selected: %c\n", input);
-        sleep_ms(250);
+    serial_test_loop();
+
+    while (1) {
+        sleep_ms(1000);
     }
+
+    return 0;
 }

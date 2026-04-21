@@ -310,7 +310,6 @@ void BJ_Init(void) {
     deck_init_and_shuffle();
     HAL_Display_ShowStartScreen();
 }
-
 /*
  * BJ_StartGame – joystick press from IDLE / GAME_OVER.
  * Transitions to BETTING state.
