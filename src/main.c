@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pico/stdlib.h"
+#include "test_loop.h"
+#include "game_logic.h"
 
 // forward declarations for audio functions in pwm_speaker.c
 void init_pwm_audio(void);
@@ -13,46 +15,20 @@ void HAL_Audio_PlayBlackjack(void);
 void HAL_Audio_PlayBust(void);
 void HAL_Audio_PlayPush(void);
 
-int main() {
+int main(void) {
     stdio_init_all();
+    sleep_ms(1500);
 
-    init_adc();
-    init_pwm_audio();   // initialize audio
+    leds_init();          // initialize LEDs
+    init_pwm_audio();     // initialize audio
+    Screen_Init();
+    BJ_Init();
 
-    // --- Audio test: cycle through all sounds once at startup ---
-    printf("Testing WIN...\n");
-    HAL_Audio_PlayWin();
-    while (audio_is_playing()) tight_loop_contents();
-    sleep_ms(1000);
+    serial_test_loop();
 
-    printf("Testing BLACKJACK...\n");
-    HAL_Audio_PlayBlackjack();
-    while (audio_is_playing()) tight_loop_contents();
-    sleep_ms(1000);
-
-    printf("Testing LOSS...\n");
-    HAL_Audio_PlayLoss();
-    while (audio_is_playing()) tight_loop_contents();
-    sleep_ms(1000);
-
-    printf("Testing BUST...\n");
-    HAL_Audio_PlayBust();
-    while (audio_is_playing()) tight_loop_contents();
-    sleep_ms(1000);
-
-    printf("Testing PUSH...\n");
-    HAL_Audio_PlayPush();
-    while (audio_is_playing()) tight_loop_contents();
-    sleep_ms(1000);
-
-    printf("Audio test done. Starting joystick loop...\n");
-    // --- End audio test ---
-
-    char input = 0; 
-    // R:right, L:left, U:up, D:down
-    for(;;) {
-        input = joystick();
-        printf("User selected: %c\n", input);
-        sleep_ms(250);
+    while (1) {
+        sleep_ms(1000);
     }
+
+    return 0;
 }
